@@ -14,42 +14,24 @@ namespace ConsoleApp.Model.Helper
         private static OracleConnectionStringBuilder oracle = new OracleConnectionStringBuilder("Oracle");
         private static MysqlConnectionStringBuilder Mysql = new MysqlConnectionStringBuilder("Mariadb");
 
-        private static SqlConnection localConnection;
-        private static SqlConnection mssqlConnection;
-        private static OracleConnection oracleConnection;
-        private static MySqlConnection mysqlConnection;
-        //Mysql 연결 추가
-
         public static SqlConnection LocalConnection()
         {
-            if(localConnection is null)
-                localConnection = new SqlConnection(local.ConnectionString);
-
-            return localConnection;
+            return new SqlConnection(local.ConnectionString);
         }
 
         public static SqlConnection MssqlConnection()
         {
-            if (mssqlConnection is null)
-                mssqlConnection = new SqlConnection(mssql.ConnectionString);
-
-            return mssqlConnection;
+            return new SqlConnection(mssql.ConnectionString);
         }
 
         public static OracleConnection OracleConnection()
         {
-            if(oracleConnection is null)
-                oracleConnection = new OracleConnection(oracle.ConnectionString);
-            
-            return oracleConnection;
+            return new OracleConnection(oracle.ConnectionString);
         }
 
         public static MySqlConnection MysqlConnection()
         {
-            if(mysqlConnection is null)
-                mysqlConnection = new MySqlConnection(Mysql.ConnectionString);
-            
-            return mysqlConnection;
+            return new MySqlConnection(Mysql.ConnectionString);
         }
 
         private class MssqlConnectionStringBuilder : ConnectionStringBuilder

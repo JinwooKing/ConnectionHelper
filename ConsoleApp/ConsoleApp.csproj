@@ -190,7 +190,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\Domain\TagInfo.cs" />
-    <Compile Include="Model\Domain\TargetInfo.cs" />
+    <Compile Include="Model\Domain\RelayTagInfo.cs" />
     <Compile Include="Model\Helper\ConnectionHelper.cs" />
     <Compile Include="Model\Helper\IniHelper.cs" />
     <Compile Include="Model\Service\LocalService.cs" />
