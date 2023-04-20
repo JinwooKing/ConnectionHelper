@@ -2,6 +2,7 @@
 using ConsoleApp.Model.Service;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,13 +12,6 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            DoWork();
-            
-            Console.ReadKey();
-        }
-
-        static async void DoWork()
-        {
             Console.WriteLine(ConnectionHelper.LocalConnection().ConnectionString);
             Console.WriteLine(ConnectionHelper.MssqlConnection().ConnectionString);
             Console.WriteLine(ConnectionHelper.OracleConnection().ConnectionString);
@@ -25,8 +19,10 @@ namespace ConsoleApp
 
             LocalService.GetVersion();
             MssqlService.GetVersion();
-            //OracleService.GetVersion();
-            //MysqlService.GetVerison(); 
+            OracleService.GetVersion();
+            MysqlService.GetVerison();
+
+            Console.ReadKey();
         }
     }
 }

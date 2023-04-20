@@ -2,12 +2,13 @@
 using Dapper;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ConsoleApp.Model.Service
 {
     public class OracleService
     {
-        public static async void GetVersion()
+        public static async Task GetVersion()
         {
             using (var conn = ConnectionHelper.OracleConnection())
             {
@@ -18,7 +19,7 @@ namespace ConsoleApp.Model.Service
                 var results = await conn.QueryAsync<string>(query);
                 var result = results.SingleOrDefault();
 
-                Console.Write(result);
+                Console.WriteLine(result);
             }
         }
     }

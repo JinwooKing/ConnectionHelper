@@ -10,18 +10,18 @@ namespace ConsoleApp.Model.Service
 {
     public class MysqlService
     {
-        public static async void GetVerison()
+        public static async Task GetVerison()
         {
-            using (var conn = ConnectionHelper.MssqlConnection())
+            using (var conn = ConnectionHelper.MysqlConnection())
             {
                 await conn.OpenAsync();
                 
                 var query = "SELECT VERSION()";
 
                 var results = await conn.QueryAsync<string>(query);
-                var reulst = results.SingleOrDefault();
+                var result = results.SingleOrDefault();
 
-                Console.WriteLine(results);
+                Console.WriteLine(result);
             }
         }
     }

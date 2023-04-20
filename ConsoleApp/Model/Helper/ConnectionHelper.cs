@@ -77,7 +77,7 @@ namespace ConsoleApp.Model.Helper
                 get
                 {
                     string ConnectionString = $@"Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = {server})(PORT = {port}))) 
-                                                        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe))); User Id={uid};Password={pwd};";
+                                                        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = {sid}))); User Id={uid};Password={pwd};";
 
                     return ConnectionString;
                 }
@@ -93,8 +93,8 @@ namespace ConsoleApp.Model.Helper
             public string ConnectionString
             {
                 get
-                {
-                    string ConnectionString = $@"server={server};user={uid};password={pwd};database={database}";
+                {                    
+                    string ConnectionString = $@"server={server};port={port};database={database};user={uid};password={pwd};charset=utf8;sslmode=none;";
 
                     return ConnectionString;
                 }
@@ -109,11 +109,13 @@ namespace ConsoleApp.Model.Helper
             public StringBuilder _Uid { get; set; } = new StringBuilder();
             public StringBuilder _Pwd { get; set; } = new StringBuilder();
             public StringBuilder _Port { get; set; } = new StringBuilder();
+            public StringBuilder _Sid { get; set; } = new StringBuilder();
             public string server { get {  return _Server.ToString(); } }
             public string database { get { return _Database.ToString(); } }
             public string uid { get { return _Uid.ToString(); } }
             public string pwd { get { return _Pwd.ToString(); } }
             public string  port { get { return _Port.ToString(); } }
+            public string sid { get { return _Sid.ToString(); } }
             #endregion
 
             public ConnectionStringBuilder(string dbName)
@@ -128,6 +130,7 @@ namespace ConsoleApp.Model.Helper
                 IniHelper.GetPrivateProfileString(dbName, "Uid", "", _Uid, 32, IniHelper.filePath);
                 IniHelper.GetPrivateProfileString(dbName, "Pwd", "", _Pwd, 32, IniHelper.filePath);
                 IniHelper.GetPrivateProfileString(dbName, "Port", "", _Port, 32, IniHelper.filePath);
+                IniHelper.GetPrivateProfileString(dbName, "Sid", "", _Sid, 32, IniHelper.filePath);
             }
         }
 

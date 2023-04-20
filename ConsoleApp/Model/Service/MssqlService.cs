@@ -10,7 +10,7 @@ namespace ConsoleApp.Model.Service
 {
     public class MssqlService
     {
-        public static async void GetVersion()
+        public static async Task GetVersion()
         {
             using (var conn = ConnectionHelper.MssqlConnection())
             {
