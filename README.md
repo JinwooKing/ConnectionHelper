@@ -1,7 +1,10 @@
-#  .NET¾ÖÇÃ¸®ÄÉÀÌ¼Ç¿¡¼­ MSQQL, Oracle, MariaDB/MySQL µ¥ÀÌÅÍº£ÀÌ½º¿Í »óÈ£ ÀÛ¿ë
+#  .NETì• í”Œë¦¬ì¼€ì´ì…˜ì—ì„œ MSQQL, Oracle, MariaDB/MySQL ë°ì´í„°ë² ì´ìŠ¤ì™€ ìƒí˜¸ ì‘ìš©
 
-### Mssql ¶óÀÌºê·¯¸® Microsoft.Data.SqlClient
+#### Mssql ë¼ì´ë¸ŒëŸ¬ë¦¬ 
+  Microsoft.Data.SqlClient
 
-### Oracle ¶óÀÌºê·¯¸® Oracle.ManagedDataAccess
+#### Oracle ë¼ì´ë¸ŒëŸ¬ë¦¬ 
+  Oracle.ManagedDataAccess
 
-### MariaDB ¶óÀÌºê·¯¸® MySqlConnector
+#### MariaDB ë¼ì´ë¸ŒëŸ¬ë¦¬ 
+  MySqlConnector
