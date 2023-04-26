@@ -4,11 +4,14 @@ using SqlConnectionStringBuilder = Microsoft.Data.SqlClient.SqlConnectionStringB
 using SqlConnectionColumnEncryptionSetting = Microsoft.Data.SqlClient.SqlConnectionColumnEncryptionSetting;
 using Oracle.ManagedDataAccess.Client;
 using MySqlConnector;
+using ConsoleApp.Model.Service;
+using System.Threading.Tasks;
 
 namespace ConsoleApp.Model.Helper
 {
     public class ConnectionHelper
     {
+
         private static MssqlConnectionStringBuilder local = new MssqlConnectionStringBuilder("Local");
         private static MssqlConnectionStringBuilder mssql = new MssqlConnectionStringBuilder("Mssql");
         private static OracleConnectionStringBuilder oracle = new OracleConnectionStringBuilder("Oracle");
@@ -43,9 +46,9 @@ namespace ConsoleApp.Model.Helper
 
             public string ConnectionString
             {
-                get 
-                { 
-                    if(sqlConnectionStringBuilder is null)
+                get
+                {
+                    if (sqlConnectionStringBuilder is null)
                     {
                         sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
                         {
@@ -93,7 +96,7 @@ namespace ConsoleApp.Model.Helper
             public string ConnectionString
             {
                 get
-                {                    
+                {
                     string ConnectionString = $@"server={server};port={port};database={database};user={uid};password={pwd};charset=utf8;sslmode=none;";
 
                     return ConnectionString;
@@ -110,11 +113,11 @@ namespace ConsoleApp.Model.Helper
             public StringBuilder _Pwd { get; set; } = new StringBuilder();
             public StringBuilder _Port { get; set; } = new StringBuilder();
             public StringBuilder _Sid { get; set; } = new StringBuilder();
-            public string server { get {  return _Server.ToString(); } }
+            public string server { get { return _Server.ToString(); } }
             public string database { get { return _Database.ToString(); } }
             public string uid { get { return _Uid.ToString(); } }
             public string pwd { get { return _Pwd.ToString(); } }
-            public string  port { get { return _Port.ToString(); } }
+            public string port { get { return _Port.ToString(); } }
             public string sid { get { return _Sid.ToString(); } }
             #endregion
 
@@ -134,83 +137,17 @@ namespace ConsoleApp.Model.Helper
             }
         }
 
-        #region SAMPLE
-        /*
-        public ConnectionHelper()
+        public async static Task TestDatabaseConnection()
         {
-            //OracleConnectionTest();
-            //SqlServerConnectionTest();
+            NlogHelper.LogWrite(ConnectionHelper.LocalConnection().ConnectionString, NlogHelper.LogType.Debug);
+            NlogHelper.LogWrite(ConnectionHelper.MssqlConnection().ConnectionString, NlogHelper.LogType.Debug);
+            NlogHelper.LogWrite(ConnectionHelper.OracleConnection().ConnectionString, NlogHelper.LogType.Debug);
+            NlogHelper.LogWrite(ConnectionHelper.MysqlConnection().ConnectionString, NlogHelper.LogType.Debug);
+
+            await LocalService.GetVersion();
+            await MssqlService.GetVersion();
+            await OracleService.GetVersion();
+            await MysqlService.GetVerison();
         }
-
-        /// <summary>
-        /// SQL Server 데이터베이스
-        /// </summary>
-        public static void SqlServerConnectionTest()
-        {
-            //0. 접속정보
-            string SERVER = "000.000.000.000";
-            string UID = "<로그인>";
-            string PWD = "<암호>";
-            string DATABASE = "<데이터베이스 명>";
-
-            //1. SqlConnectionStringBuilder 사용
-            SqlConnectionStringBuilder sqlConnectionStringBuilder = new SqlConnectionStringBuilder()
-            {
-                DataSource = SERVER,
-                UserID = UID,
-                Password = PWD,
-                InitialCatalog = DATABASE,
-                Encrypt = true,
-                TrustServerCertificate = true,
-                ColumnEncryptionSetting = SqlConnectionColumnEncryptionSetting.Enabled
-            };
-
-            //1-2. ConnectionString 사용
-            //string ConnectionString = $"Data Source={SERVER};Initial Catalog={DATABASE};User ID={UID};Password={PWD}";
-            //string ConnectionString = $"server={SERVER};database={DATABASE};uid={UID};pwd={PWD}";
-
-            //2. 데이터베이스 연결 및 버전 조회
-            using (SqlConnection conn = new SqlConnection(sqlConnectionStringBuilder.ConnectionString))
-            {
-                string sql = "SELECT @@VERSION";
-
-                conn.Open();
-
-                string rtnVal = conn.Query<string>(sql).First();
-                Console.Write(rtnVal);
-            }
-        }
-        /// <summary>
-        /// Oracle 데이터베이스
-        /// </summary>
-        public static void OracleConnectionTest()
-        {
-            //0. 접속정보
-            string SERVER = "000.000.000.000";
-            string PORT = "<포트>";
-            string UID = "<로그인>";
-            string PWD = "<암호>";
-
-            //1. ConnectionString 사용
-            string ConnectionString = $@"Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = {SERVER})(PORT = {PORT}))) 
-                                                        (CONNECT_DATA = (SERVER = DEDICATED) (SERVICE_NAME = xe))); User Id={UID};Password={PWD};";
-            //"Data Source={DataSource};User Id={UserId};Password={Password};";
-
-            //2. 데이터베이스 연결 및 버전 조회
-            OracleConnection conn = new OracleConnection(ConnectionString);
-            conn.Open();
-
-            OracleCommand cmd = new OracleCommand();
-            cmd.Connection = conn;
-            
-            cmd.CommandText = "SELECT SYSDATE FROM DUAL";
-            OracleDataReader reader = cmd.ExecuteReader();
-            if (reader.Read())
-            {
-                Console.WriteLine(reader[0]);
-            }
-        }
-        */
-        #endregion
     }
 }

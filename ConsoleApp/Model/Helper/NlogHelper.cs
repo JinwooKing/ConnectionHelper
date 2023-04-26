@@ -17,8 +17,6 @@ namespace ConsoleApp.Model.Helper
 
         public static void LogWrite(String msg, LogType logtype = LogType.Info)
         {
-            Console.WriteLine(msg);
-
             switch (logtype)
             {
                 case LogType.Info:

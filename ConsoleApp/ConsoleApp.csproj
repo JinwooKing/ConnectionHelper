@@ -220,8 +220,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Domain\TagInfo.cs" />
-    <Compile Include="Model\Domain\RelayTagInfo.cs" />
     <Compile Include="Model\Helper\ConnectionHelper.cs" />
     <Compile Include="Model\Helper\IniHelper.cs" />
     <Compile Include="Model\Helper\NlogHelper.cs" />
@@ -241,6 +239,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Model\Domain\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Data.SqlClient.SNI.5.1.0\build\net462\Microsoft.Data.SqlClient.SNI.targets" Condition="Exists('packages\Microsoft.Data.SqlClient.SNI.5.1.0\build\net462\Microsoft.Data.SqlClient.SNI.targets')" />

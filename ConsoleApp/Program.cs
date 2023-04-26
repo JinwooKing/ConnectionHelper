@@ -12,16 +12,10 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(ConnectionHelper.LocalConnection().ConnectionString);
-            Console.WriteLine(ConnectionHelper.MssqlConnection().ConnectionString);
-            Console.WriteLine(ConnectionHelper.OracleConnection().ConnectionString);
-            Console.WriteLine(ConnectionHelper.MysqlConnection().ConnectionString);
-
-            LocalService.GetVersion();
-            MssqlService.GetVersion();
-            OracleService.GetVersion();
-            MysqlService.GetVerison();
-
+            #region DB 접속정보 및 접속 테스트
+            ConnectionHelper.TestDatabaseConnection();
+            #endregion
+            
             Console.ReadKey();
         }
     }

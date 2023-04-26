@@ -1,8 +1,7 @@
-﻿using ConsoleApp.Model.Domain;
-using ConsoleApp.Model.Helper;
+﻿using ConsoleApp.Model.Helper;
 using Dapper;
 using System;
-using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,17 +11,24 @@ namespace ConsoleApp.Model.Service
     {
 
         public static async Task GetVersion()
-        { 
-            using (var conn = ConnectionHelper.LocalConnection())
+        {
+            try
             {
-                await conn.OpenAsync();
-                
-                var query = "SELECT @@VERSION";
+                using (var conn = ConnectionHelper.LocalConnection())
+                {
+                    await conn.OpenAsync();
 
-                var results = await conn.QueryAsync<string>(query);
-                var result = results.SingleOrDefault();
+                    var query = "SELECT @@VERSION";
 
-                Console.Write(result);
+                    var results = await conn.QueryAsync<string>(query, commandType: CommandType.Text);
+                    var result = results.SingleOrDefault();
+
+                    NlogHelper.LogWrite(result, NlogHelper.LogType.Debug);
+                }
+            }
+            catch(Exception e)
+            {
+                NlogHelper.LogWrite(e.ToString());
             }
         }
     }

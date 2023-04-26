@@ -2,6 +2,7 @@
 using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +13,23 @@ namespace ConsoleApp.Model.Service
     {
         public static async Task GetVersion()
         {
-            using (var conn = ConnectionHelper.MssqlConnection())
+            try
             {
-                await conn.OpenAsync();
+                using (var conn = ConnectionHelper.MssqlConnection())
+                {
+                    await conn.OpenAsync();
+                    
+                    var query = "SELECT @@VERSION";
 
-                var query = "SELECT @@VERSION";
+                    var results = await conn.QueryAsync<string>(query, commandType: CommandType.Text);
+                    var result = results.SingleOrDefault();
 
-                var results = await conn.QueryAsync<string>(query);
-                var result = results.SingleOrDefault();
-
-                Console.Write(result);
+                    NlogHelper.LogWrite(result, NlogHelper.LogType.Debug);
+                }
+            }
+            catch (Exception e)
+            {
+                NlogHelper.LogWrite(e.ToString());
             }
         }
     }
