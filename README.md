@@ -1,10 +1,14 @@
-#  .NET애플리케이션에서 MSQQL, Oracle, MariaDB/MySQL 데이터베이스와 상호 작용
+# ConnectionHelper
+.NET Framework 4.8와 .NET7 환경에서 MSQQL, Oracle, MariaDB/MySQL 데이터베이스와 상호 작용
 
-#### Mssql 라이브러리 
-  Microsoft.Data.SqlClient
+## .NET Framework 4.8
+* Dapper
+* Microsoft.Data.SqlClient
+* Oracle.ManagedDataAccess
+* MySqlConnector
 
-#### Oracle 라이브러리 
-  Oracle.ManagedDataAccess
-
-#### MariaDB 라이브러리 
-  MySqlConnector
+## .NET 7
+* Dapper-Extensions
+* Microsoft.Data.SqlClient
+* Oracle.ManagedDataAccess
+* MySqlConnector
