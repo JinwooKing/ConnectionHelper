@@ -2,9 +2,9 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
-using static ConsoleApp.Model.Helper.ConnectionHelper;
+using static ConsoleApp1.Model.Helper.ConnectionHelper;
 
-namespace ConsoleApp.Model.Helper
+namespace ConsoleApp1.Model.Helper
 {
     public class IniHelper
     {

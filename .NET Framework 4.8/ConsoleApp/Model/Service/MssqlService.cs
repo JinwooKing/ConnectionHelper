@@ -1,4 +1,4 @@
-﻿using ConsoleApp.Model.Helper;
+﻿using ConsoleApp1.Model.Helper;
 using Dapper;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.Model.Service
+namespace ConsoleApp1.Model.Service
 {
     public class MssqlService
     {

@@ -12,3 +12,5 @@
 * Microsoft.Data.SqlClient
 * Oracle.ManagedDataAccess
 * MySqlConnector
+* Microsoft.Extensions.Configuration
+* Microsoft.Extensions.Configuration.Json

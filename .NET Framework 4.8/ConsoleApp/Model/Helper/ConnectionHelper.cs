@@ -4,10 +4,10 @@ using SqlConnectionStringBuilder = Microsoft.Data.SqlClient.SqlConnectionStringB
 using SqlConnectionColumnEncryptionSetting = Microsoft.Data.SqlClient.SqlConnectionColumnEncryptionSetting;
 using Oracle.ManagedDataAccess.Client;
 using MySqlConnector;
-using ConsoleApp.Model.Service;
+using ConsoleApp1.Model.Service;
 using System.Threading.Tasks;
 
-namespace ConsoleApp.Model.Helper
+namespace ConsoleApp1.Model.Helper
 {
     public class ConnectionHelper
     {
@@ -144,10 +144,10 @@ namespace ConsoleApp.Model.Helper
             NlogHelper.LogWrite(ConnectionHelper.OracleConnection().ConnectionString, NlogHelper.LogType.Debug);
             NlogHelper.LogWrite(ConnectionHelper.MysqlConnection().ConnectionString, NlogHelper.LogType.Debug);
 
-            await LocalService.GetVersion();
-            await MssqlService.GetVersion();
-            await OracleService.GetVersion();
-            await MysqlService.GetVerison();
+            LocalService.GetVersion();
+            MssqlService.GetVersion();
+            OracleService.GetVersion();
+            MysqlService.GetVerison();
         }
     }
 }

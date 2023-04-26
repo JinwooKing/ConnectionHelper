@@ -1,24 +1,22 @@
-﻿using ConsoleApp.Model.Helper;
+﻿using ConsoleApp2.Model.Helper;
+using ConsoleApp2.Model.Utils;
 using Dapper;
-using Oracle.ManagedDataAccess.Client;
-using System;
+using MySqlConnector;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace ConsoleApp.Model.Service
+namespace ConsoleApp2.Model.Service
 {
-    public class OracleService
+    public class MysqlService
     {
-        public static async Task GetVersion()
+        public static async Task GetVerison()
         {
-            try 
-            { 
-                using (var conn = ConnectionHelper.OracleConnection())
+            try
+            {
+                using (var conn = new MySqlConnection(Consts.mariadb))
                 {
                     await conn.OpenAsync();
 
-                    var query = "SELECT * FROM v$version WHERE banner LIKE 'Oracle%'";
+                    var query = "SELECT VERSION()";
 
                     var results = await conn.QueryAsync<string>(query, commandType: CommandType.Text);
                     var result = results.SingleOrDefault();
