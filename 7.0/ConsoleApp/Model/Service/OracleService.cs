@@ -3,7 +3,6 @@ using ConsoleApp2.Model.Helper;
 using ConsoleApp2.Model.Utils;
 using Dapper;
 using DapperExtensions;
-using MySqlConnector;
 using Oracle.ManagedDataAccess.Client;
 using System.Data;
 

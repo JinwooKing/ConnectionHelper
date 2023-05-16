@@ -7,10 +7,10 @@ using ConsoleApp2.Model.Service;
 //OracleService.GetVersion();
 
 // 2. 입력
-var p = new Person() { Name = "JINWOO", age = 30 };
+var p = new Person() { Name = "JINWOO", Age = 30 };
 
-//MSSQL만 가능
-MssqlService.Insert(p);
+//EntityFrameWork MSSQL만 가능
+//MssqlService.Insert(p);
 
 //MysqlService.Insert(p);
 //OracleService.Insert(p);
