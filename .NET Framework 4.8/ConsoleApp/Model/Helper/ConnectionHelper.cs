@@ -107,18 +107,12 @@ namespace ConsoleApp1.Model.Helper
         private class ConnectionStringBuilder
         {
             #region 속성
-            public StringBuilder _Server { get; set; } = new StringBuilder();
-            public StringBuilder _Database { get; set; } = new StringBuilder();
-            public StringBuilder _Uid { get; set; } = new StringBuilder();
-            public StringBuilder _Pwd { get; set; } = new StringBuilder();
-            public StringBuilder _Port { get; set; } = new StringBuilder();
-            public StringBuilder _Sid { get; set; } = new StringBuilder();
-            public string server { get { return _Server.ToString(); } }
-            public string database { get { return _Database.ToString(); } }
-            public string uid { get { return _Uid.ToString(); } }
-            public string pwd { get { return _Pwd.ToString(); } }
-            public string port { get { return _Port.ToString(); } }
-            public string sid { get { return _Sid.ToString(); } }
+            public string server { get; private set; }
+            public string database { get; private set; }
+            public string uid { get; private set; }
+            public string pwd { get; private set; }
+            public string port { get; private set; }
+            public string sid { get; private set; }
             #endregion
 
             public ConnectionStringBuilder(string dbName)
@@ -128,12 +122,12 @@ namespace ConsoleApp1.Model.Helper
 
             private void GetPrivateProfileString(string dbName)
             {
-                IniHelper.GetPrivateProfileString(dbName, "Server", "", _Server, 32, IniHelper.filePath);
-                IniHelper.GetPrivateProfileString(dbName, "Database", "", _Database, 32, IniHelper.filePath);
-                IniHelper.GetPrivateProfileString(dbName, "Uid", "", _Uid, 32, IniHelper.filePath);
-                IniHelper.GetPrivateProfileString(dbName, "Pwd", "", _Pwd, 32, IniHelper.filePath);
-                IniHelper.GetPrivateProfileString(dbName, "Port", "", _Port, 32, IniHelper.filePath);
-                IniHelper.GetPrivateProfileString(dbName, "Sid", "", _Sid, 32, IniHelper.filePath);
+                server = IniHelper.GetPrivateProfileString(dbName, "Server");
+                database = IniHelper.GetPrivateProfileString(dbName, "Database");
+                uid = IniHelper.GetPrivateProfileString(dbName, "Uid");
+                pwd = IniHelper.GetPrivateProfileString(dbName, "Pwd");
+                port = IniHelper.GetPrivateProfileString(dbName, "Port");
+                sid = IniHelper.GetPrivateProfileString(dbName, "Sid");
             }
         }
 

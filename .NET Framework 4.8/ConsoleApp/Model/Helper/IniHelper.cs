@@ -25,5 +25,11 @@ namespace ConsoleApp1.Model.Helper
         public static extern long WritePrivateProfileString(string section, string key, string val, string filePath);
         [DllImport("kernel32")]
         public static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+        public static string GetPrivateProfileString(string section, string key)
+        {
+            StringBuilder temp = new StringBuilder(32);
+            GetPrivateProfileString(section, key, "", temp, 32, filePath);
+            return temp.ToString();
+        }
     }
 }
