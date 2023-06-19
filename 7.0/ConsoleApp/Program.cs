@@ -9,8 +9,8 @@ using ConsoleApp2.Model.Service;
 // 2. 입력
 var p = new Person() { Name = "JINWOO", Age = 30 };
 
-//EntityFrameWork MSSQL만 가능
-//MssqlService.Insert(p);
+//DapperExtensions을 사용한 EntityFrameWork MSSQL만 가능
+MssqlService.Insert(p);
 
 //MysqlService.Insert(p);
 //OracleService.Insert(p);
